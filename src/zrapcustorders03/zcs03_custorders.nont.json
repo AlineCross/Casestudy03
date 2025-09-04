@@ -1,0 +1,11 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "",
+    "originalLanguage": "de",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "name": "ZCS03_CUSTORDERS",
+  "sapObjectType": "ZCS03_CUSTORDERS",
+  "rootNode": true
+}

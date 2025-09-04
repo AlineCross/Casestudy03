@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_CS03_CASESTUDY'
+@MappingRole: true
+define role ZC_CS03_CASESTUDY {
+  grant select on ZC_CS03_CASESTUDY
+  where INHERITING CONDITIONS FROM ENTITY ZR_CS03_CASESTUDY REPLACING { ROOT WITH _BaseEntity };
+}

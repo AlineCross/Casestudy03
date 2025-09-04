@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_CS09_CSVPOSTC'
+@MappingRole: true
+define role ZR_CS09_CSVPOSTC {
+  grant select on ZR_CS09_CSVPOSTC
+  where TRUE;
+}

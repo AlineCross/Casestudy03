@@ -1,0 +1,46 @@
+managed implementation in class ZBP_R_CS03_CASESTUDY unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CS03_CASESTUDY alias ZrCs03Casestudy
+persistent table ZCS03_CASESTUDY
+extensible
+draft table ZCS03_CSESTUDY_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   UUID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   UUID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCS03_CASESTUDY corresponding extensible
+  {
+    UUID = uuid;
+    Import = import;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+
+}

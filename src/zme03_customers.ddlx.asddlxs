@@ -1,0 +1,9 @@
+@Metadata.layer: #CUSTOMER
+
+annotate entity zcs03customers_r
+    with 
+{
+@EndUserText.label: 'Kunden Nr'
+    CustomerId;
+    
+}

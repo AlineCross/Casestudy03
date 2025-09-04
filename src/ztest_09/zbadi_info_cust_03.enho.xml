@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>BADI_IMPL</TOOL>
+   <SHORTTEXT>BAdI Implementation for additional info CUST</SHORTTEXT>
+   <SPOT_NAME>Z_INFO_CUSTOMERS_ADDED_03</SPOT_NAME>
+   <IMPL>
+    <ENH_BADI_IMPL_DATA>
+     <SPOT_NAME>Z_INFO_CUSTOMERS_ADDED_03</SPOT_NAME>
+     <BADI_NAME>ZBADI_ADD_INFO_CUST03</BADI_NAME>
+     <IMPL_NAME>ZBADI_ADD_INFO_CUST03</IMPL_NAME>
+     <IMPL_CLASS>ZCLBADI_ADD_INFO_CUST03</IMPL_CLASS>
+     <ACTIVE>X</ACTIVE>
+     <IS_DEFAULT>X</IS_DEFAULT>
+     <IMPL_SHORTTEXT>BADI for additional information about addition to DBT Customers</IMPL_SHORTTEXT>
+    </ENH_BADI_IMPL_DATA>
+   </IMPL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

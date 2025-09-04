@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_CS09_CSVPOSTC'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CS09_CSVPOSTC'
+  }
+}
+define service ZUI_CS09_CSVPOSTC_O4 provider contracts odata_v4_ui {
+  expose ZC_CS09_CSVPOSTC;
+}
