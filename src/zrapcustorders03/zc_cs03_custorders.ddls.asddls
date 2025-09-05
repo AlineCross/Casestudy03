@@ -14,6 +14,7 @@ define root view entity ZC_CS03_CUSTORDERS
 {
   key OrderID,
   CustomerID,
+  @EndUserText.label: 'Bestelldatum 1'
   OrderDate,
   @Semantics: {
     amount.currencyCode: 'Currency'

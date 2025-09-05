@@ -7,20 +7,20 @@ CLASS zcl_import_raw_customers_03 DEFINITION
     INTERFACES if_oo_adt_classrun .
     INTERFACES if_apj_dt_exec_object .
     INTERFACES if_apj_rt_exec_object .
-    METHODS import_csv IMPORTING iv_run_status TYPE zrun_status03.
+*    METHODS import_csv IMPORTING iv_run_status TYPE zrun_status03.
+    METHODS import_csv.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
     METHODS is_db_table_customers_full RETURNING VALUE(rv_result) TYPE abap_boolean.
-    CONSTANTS for_background_job_as_deployed TYPE zrun_status03 VALUE 'DEPLOYED'.
-    CONSTANTS for_constructor_as_development TYPE zrun_status03 VALUE 'DEVELOPMENT'.
-    CONSTANTS raw_csv_table  TYPE ztablename03 VALUE 'zcs03_casestudy'.
-    CONSTANTS lc_numberrange_counter_reset TYPE zcustomer_id03 VALUE '000001'.
+    CONSTANTS c_raw_csv_table   TYPE ztablename03 VALUE 'zcs03_casestudy'.
+*    CONSTANTS c_numberrange_counter_reset TYPE zcustomer_id03 VALUE '000001'.
     CONSTANTS c_email   TYPE string VALUE 'email'.
     CONSTANTS c_company TYPE string VALUE 'company'.
     TYPES typ_numc6 TYPE n LENGTH 6.
-    DATA lo_badi      TYPE REF TO zbadi_add_info_cust03.
-    DATA lt_error_ids TYPE zibadi_add_info_cust03=>tt_failed_addresses.
+    DATA gv_timestamp     TYPE abp_creation_tstmpl.
+    DATA lo_badi       TYPE REF TO zbadi_add_info_cust03.
+    DATA lt_error_ids  TYPE zibadi_add_info_cust03=>tt_failed_addresses.
     DATA lv_badi_count TYPE i VALUE '0'.
 ENDCLASS.
 
@@ -31,11 +31,12 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD if_apj_rt_exec_object~execute.
-    import_csv( iv_run_status = for_background_job_as_deployed ).
+*   for Application Job
+    import_csv( ).
   ENDMETHOD.
 
   METHOD if_oo_adt_classrun~main.
-    import_csv( iv_run_status = for_constructor_as_development ).
+    import_csv( ).
   ENDMETHOD.
 
   METHOD is_db_table_customers_full.
@@ -51,7 +52,6 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
   ENDMETHOD.
 **********************************************************************
   METHOD import_csv.
-    DATA timestamp  TYPE abp_creation_tstmpl.
 
 *   Normierte Daten, Struktur basiert auf die Tabelle ZCS03_CUSTOMERS
     DATA gt_customers_norm TYPE zcs03_tty_customers.
@@ -62,14 +62,15 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
 *   Rohe(raw) csv Daten werden für weitere Verarbeitung in ABAP Struktur übernommen
     TYPES: BEGIN OF sty_customer,
              company  TYPE c LENGTH 60,
-*                     last_name TYPE c LENGTH 25,
-*                     first_name TYPE c LENGTH 20,
+*           last_name TYPE c LENGTH 25,
+*          first_name TYPE c LENGTH 20,
              street   TYPE c LENGTH 50,
              postcode TYPE c LENGTH 6,
              city     TYPE c LENGTH 30,
              media    TYPE c LENGTH 10,
              value1   TYPE c LENGTH 60,
              value2   TYPE c LENGTH 60,
+*            vip      TYPE c LENGTH 1,
            END OF sty_customer.
 
     DATA  s_customer TYPE  sty_customer.
@@ -79,7 +80,7 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
 
 **********************************************************************
 
-    SELECT DISTINCT import FROM (raw_csv_table) INTO TABLE @gt_raw_customers.
+    SELECT DISTINCT import FROM (c_raw_csv_table) INTO TABLE @gt_raw_customers.
 
     SORT gt_raw_customers BY table_line.
 
@@ -96,6 +97,7 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
            s_customer-media
            s_customer-value1
            s_customer-value2.
+*          s_customer-vip.
 
       INSERT s_customer INTO TABLE gt_customers.
 
@@ -227,13 +229,13 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
         <ls_customers_norm>-language = sy-langu.
         <ls_customers_norm>-country  = 'DE'.
 
-        GET TIME STAMP FIELD timestamp.
-        <ls_customers_norm>-last_date = timestamp.
-        <ls_customers_norm>-local_created_at = timestamp.
+        GET TIME STAMP FIELD gv_timestamp.
+        <ls_customers_norm>-last_date = cl_abap_context_info=>get_system_date( ).
+        <ls_customers_norm>-local_created_at = gv_timestamp.
         <ls_customers_norm>-local_created_by = sy-uname.
-        <ls_customers_norm>-local_last_changed_at = timestamp.
+        <ls_customers_norm>-local_last_changed_at = gv_timestamp.
         <ls_customers_norm>-local_last_changed_by = sy-uname.
-        <ls_customers_norm>-last_changed_at = timestamp.
+        <ls_customers_norm>-last_changed_at = gv_timestamp.
 
       ENDLOOP.
 

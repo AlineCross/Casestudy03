@@ -10,8 +10,8 @@
    <TEXT>
     <LANGU>D</LANGU>
     <OBJECT>Z03NROBJ_C</OBJECT>
-    <TXT>Nummernkreis für customer_ID</TXT>
-    <TXTSHORT>NRKRS CUSTOMER_ID</TXTSHORT>
+    <TXT>Nummernkreisobjekt für Customers</TXT>
+    <TXTSHORT>Nummernkreisobjek...</TXTSHORT>
    </TEXT>
   </asx:values>
  </asx:abap>

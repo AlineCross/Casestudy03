@@ -34,20 +34,21 @@ annotate view ZC_CS03_CUSTORDERS with
   } ]
   CustomerID;
   
-  @EndUserText.label: 'OrderDate'
+
   @UI.identification: [ {
     position: 30 , 
-    label: 'OrderDate'
+    label: 'Bestelldatum'
   } ]
   @UI.lineItem: [ {
     position: 30 , 
-    label: 'OrderDate'
+    label: 'Bestelldatum'
   } ]
   @UI.selectionField: [ {
     position: 30 
   } ]
   OrderDate;
   
+  @EndUserText.label: 'Summe der Bestellung'
   @UI.identification: [ {
     position: 40 
   } ]

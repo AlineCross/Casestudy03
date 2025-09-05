@@ -9,6 +9,7 @@ define root view entity ZR_CS03_CUSTORDERS
   key order_id                            as OrderID,
       @EndUserText.label: 'Kundennummer'
       customer_id                         as CustomerID,
+      @EndUserText.label: 'Datum der Bestellung'
       order_date                          as OrderDate,
       @Semantics.amount.currencyCode: 'Currency'
       order_total                         as OrderTotal,
