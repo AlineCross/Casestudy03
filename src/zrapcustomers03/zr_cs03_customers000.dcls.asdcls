@@ -2,5 +2,6 @@
 @MappingRole: true
 define role ZR_CS03_CUSTOMERS000 {
   grant select on ZR_CS03_CUSTOMERS000
-  where TRUE;
+   where
+                        ( Postcode ) = aspect pfcg_auth( ZO03_PSTCD, ZA03_PSTCD,  ACTVT = '03' );
 }

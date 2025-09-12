@@ -1,38 +1,40 @@
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: true
-@Endusertext: {
-  Label: '###GENERATED Core Data Service Entity'
+@EndUserText: {
+  label: '###GENERATED Core Data Service Entity'
 }
-@Objectmodel: {
-  Sapobjectnodetype.Name: 'ZCS09_POSTCODES'
+@ObjectModel: {
+  sapObjectNodeType.name: 'ZCS09_POSTCODES'
 }
 @AccessControl.authorizationCheck: #MANDATORY
 define root view entity ZC_CS09_POSTCODES
-  provider contract TRANSACTIONAL_QUERY
+  provider contract transactional_query
   as projection on ZR_CS09_POSTCODES
-  association [1..1] to ZR_CS09_POSTCODES as _BaseEntity on $projection.POSTCODE = _BaseEntity.POSTCODE
+  association [1..1] to ZR_CS09_POSTCODES as _BaseEntity on $projection.Postcode = _BaseEntity.Postcode
 {
   key Postcode,
+  @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_CS09_POSTCODES'
+  virtual DistinctPstCds : abap.int8,
   City,
   District,
   @Semantics: {
-    User.Createdby: true
+    user.createdBy: true
   }
   LocalCreatedBy,
   @Semantics: {
-    Systemdatetime.Createdat: true
+    systemDateTime.createdAt: true
   }
   LocalCreatedAt,
   @Semantics: {
-    User.Localinstancelastchangedby: true
+    user.localInstanceLastChangedBy: true
   }
   LocalLastChangedBy,
   @Semantics: {
-    Systemdatetime.Localinstancelastchangedat: true
+    systemDateTime.localInstanceLastChangedAt: true
   }
   LocalLastChangedAt,
   @Semantics: {
-    Systemdatetime.Lastchangedat: true
+    systemDateTime.lastChangedAt: true
   }
   LastChangedAt,
   _BaseEntity

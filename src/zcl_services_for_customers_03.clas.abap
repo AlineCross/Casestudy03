@@ -3,6 +3,9 @@ CLASS zcl_services_for_customers_03 DEFINITION
   FINAL
   CREATE PUBLIC .
   PUBLIC SECTION.
+
+    CLASS-METHODS test_statistic.
+
     CLASS-METHODS create_number_range_object
       IMPORTING iv_object      TYPE znrobj03
                 iv_domlen      TYPE znrlendom03
@@ -45,11 +48,11 @@ CLASS zcl_services_for_customers_03 DEFINITION
       IMPORTING iv_object TYPE znrobj03.
 
     CLASS-METHODS check_email
-      IMPORTING iv_email          TYPE zemail03
+      IMPORTING iv_email             TYPE zemail03
       RETURNING VALUE(rv_email_bool) TYPE abap_bool.
 
     CLASS-METHODS check_company
-      IMPORTING  iv_company         TYPE zcompany03
+      IMPORTING iv_company             TYPE zcompany03
       RETURNING VALUE(rv_company_bool) TYPE abap_bool.
 
   PROTECTED SECTION.
@@ -198,7 +201,7 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
   METHOD check_email.
 
     IF iv_email IS INITIAL.
-      rv_email_bool = abap_false.
+      rv_email_bool = abap_true.
     ELSE.
       CONSTANTS lc_regex TYPE string VALUE
 *   `\A[A-Za-z0-9._+-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\z`.
@@ -232,4 +235,52 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
 
   ENDMETHOD.
 
+  METHOD test_statistic.
+
+*    DATA lo_stats     TYPE REF TO object.
+*
+*    DATA lv_class_name     TYPE seoclsname.
+*    DATA lv_interface_name TYPE seoclsname.
+*
+*    DATA lo_interface_description TYPE REF TO cl_abap_intfdescr.
+*
+*
+*    SELECT * FROM zcs03_statistic
+*    WHERE active = @abap_true
+*    INTO TABLE @DATA(lt_obj_statistics).
+*
+*    TRY.
+*        DATA(ls_obj_statistics) = lt_obj_statistics[ 1 ].
+*        lv_class_name = ls_obj_statistics-class.
+*        lv_interface_name =  ls_obj_statistics-interface.
+*      CATCH cx_sy_itab_line_not_found.
+*        EXIT.
+*    ENDTRY.
+*
+*    lo_interface_description ?= cl_abap_intfdescr=>describe_by_name( lv_interface_name ).
+*
+*    IF lo_interface_description->applies_to_class( lv_class_name ) = abap_false.
+*      " interface ist nicht in der Klasse implementiert
+*      " RAISE EXCEPTION TYPE *****
+*      EXIT.
+*    ENDIF.
+*
+*    TRY.
+*        CREATE OBJECT lo_stats TYPE (lv_class_name).
+*      CATCH cx_sy_create_object_error.
+*        EXIT.
+*    ENDTRY.
+*
+*    DATA(lv_avg) = lo_stats->zif_statistics03~max_salesaverage_sales(
+*                     iv_customer_id = '000208'
+*                     iv_fiscal_year = '2025' ).
+*
+*    DATA(lv_max) = lo_stats->zif_statistics03~max_sales(
+*                     iv_customer_id = '000208' ).
+*
+*    DATA(lv_day) = lo_stats->zif_statistics03~day_sales(
+*                     iv_customer_id = '000208'
+*                     iv_fiscal_year = '2025' ).
+
+  ENDMETHOD.
 ENDCLASS.

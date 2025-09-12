@@ -1,7 +1,7 @@
 @AccessControl.authorizationCheck: #MANDATORY
 @Metadata.allowExtensions: true
 @ObjectModel.sapObjectNodeType.name: 'ZCS03_CUSTORDERS'
-@EndUserText.label: '###GENERATED Core Data Service Entity'
+@EndUserText.label: 'Bestellungen'
 define root view entity ZR_CS03_CUSTORDERS
   as select from zcs03_custorders
   association [0..1] to ZR_CS03_CUSTOMERS as _Customers on $projection.CustomerID = _Customers.CustomerID
@@ -15,6 +15,8 @@ define root view entity ZR_CS03_CUSTORDERS
       order_total                         as OrderTotal,
       discount                            as Discount,
       info                                as Info,
+      @Consumption.valueHelpDefinition: [{entity:   { name: 'ZI_OSTATUSVH', 
+                                                      element: 'Status'  }}]
       status                              as Status,
       @Consumption.valueHelpDefinition: [ {
         entity.name: 'I_CurrencyStdVH',

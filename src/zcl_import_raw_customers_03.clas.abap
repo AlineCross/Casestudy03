@@ -13,7 +13,7 @@ CLASS zcl_import_raw_customers_03 DEFINITION
   PROTECTED SECTION.
   PRIVATE SECTION.
     METHODS is_db_table_customers_full RETURNING VALUE(rv_result) TYPE abap_boolean.
-    CONSTANTS c_raw_csv_table   TYPE ztablename03 VALUE 'zcs03_casestudy'.
+    CONSTANTS c_raw_csv_table   TYPE ztablename03 VALUE 'zcs03_casestudyd'.
 *    CONSTANTS c_numberrange_counter_reset TYPE zcustomer_id03 VALUE '000001'.
     CONSTANTS c_email   TYPE string VALUE 'email'.
     CONSTANTS c_company TYPE string VALUE 'company'.

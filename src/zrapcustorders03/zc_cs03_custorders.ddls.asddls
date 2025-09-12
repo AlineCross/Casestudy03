@@ -1,7 +1,7 @@
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: true
 @EndUserText: {
-  label: '###GENERATED Core Data Service Entity'
+  label: 'Bestellungen'
 }
 @ObjectModel: {
   sapObjectNodeType.name: 'ZCS03_CUSTORDERS'
@@ -14,7 +14,7 @@ define root view entity ZC_CS03_CUSTORDERS
 {
   key OrderID,
   CustomerID,
-  @EndUserText.label: 'Bestelldatum 1'
+  @EndUserText.label: 'Bestelldatum'
   OrderDate,
   @Semantics: {
     amount.currencyCode: 'Currency'
@@ -22,6 +22,8 @@ define root view entity ZC_CS03_CUSTORDERS
   OrderTotal,
   Discount,
   Info,
+   @Consumption.valueHelpDefinition: [{entity:   { name: 'ZI_OSTATUSVH', 
+                                                      element: 'Status'  }}]
   Status,
   @Consumption: {
     valueHelpDefinition: [ {
@@ -52,5 +54,6 @@ define root view entity ZC_CS03_CUSTORDERS
     systemDateTime.lastChangedAt: true
   }
   LastChangedAt,
+  
   _BaseEntity
 }

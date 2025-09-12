@@ -1,0 +1,71 @@
+managed implementation in class ZBP_R_T200_CUSTOMERS unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_T200_CUSTOMERS alias ZrT200Customers
+persistent table ZT200_CUSTOMERS
+extensible
+draft table ZT200_CSTOMERS_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   CustomerID;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   CustomerID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZT200_CUSTOMERS corresponding extensible
+  {
+    CustomerID = customer_id;
+    Salutation = salutation;
+    LastName = last_name;
+    FirstName = first_name;
+    Company = company;
+    Street = street;
+    City = city;
+    Country = country;
+    Postcode = postcode;
+    AccLock = acc_lock;
+    LastDate = last_date;
+    SalesVolume = sales_volume;
+    Currency = currency;
+    SalesVolumeTarget = sales_volume_target;
+    CurrencyTarget = currency_target;
+    ChangeRateDate = change_rate_date;
+    Fax = fax;
+    Phone = phone;
+    Email = email;
+    Url = url;
+    Language = language;
+    WebLogin = web_login;
+    WebPwd = web_pwd;
+    Memo = memo;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+    ZzvipZvp = zzvip_zvp;
+  }
+
+}

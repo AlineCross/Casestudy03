@@ -28,6 +28,15 @@ CLASS zcx_services_for_customers_03 DEFINITION
         attr3 TYPE scx_attrname VALUE 'attr3',
         attr4 TYPE scx_attrname VALUE 'attr4',
       END OF invalid_mail03.
+       CONSTANTS:
+      BEGIN OF statics,
+        msgid TYPE symsgid VALUE 'ZMSG_CUSTOMERS_03',
+        msgno TYPE symsgno VALUE '004',
+        attr1 TYPE scx_attrname VALUE 'customer',
+        attr2 TYPE scx_attrname VALUE 'avg',
+        attr3 TYPE scx_attrname VALUE 'max',
+        attr4 TYPE scx_attrname VALUE 'day',
+      END OF statics.
 
     CONSTANTS:
       BEGIN OF too_long_comp03,

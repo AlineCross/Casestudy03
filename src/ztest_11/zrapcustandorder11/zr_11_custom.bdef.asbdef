@@ -1,0 +1,27 @@
+managed implementation in class zbp_r_11_custom unique;
+strict ( 2 );
+
+define behavior for ZR_11_CUSTOM //alias <alias_name>
+persistent table zcs03_customers
+lock master
+authorization master ( instance, global )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) CustomerId;
+  association _orders { create; }
+}
+
+define behavior for ZC_11_ORDERS //alias <alias_name>
+persistent table zcs03_custorders
+lock dependent by _customers
+authorization dependent by _customers
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) CustomerId, OrderId;
+  association _customers;
+}

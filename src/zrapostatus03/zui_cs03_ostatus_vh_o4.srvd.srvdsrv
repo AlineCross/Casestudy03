@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service-Definition für ZC_CS03_OSTATUS_VH'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CS03_OSTATUS_VH'
+  }
+}
+define service ZUI_CS03_OSTATUS_VH_O4 provider contracts odata_v4_ui {
+  expose ZC_CS03_OSTATUS_VH;
+}

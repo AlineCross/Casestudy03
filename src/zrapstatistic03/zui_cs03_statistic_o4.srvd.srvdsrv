@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service-Definition für ZC_CS03_STATISTIC'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CS03_STATISTIC'
+  }
+}
+define service ZUI_CS03_STATISTIC_O4 provider contracts odata_v4_ui {
+  expose ZC_CS03_STATISTIC;
+}

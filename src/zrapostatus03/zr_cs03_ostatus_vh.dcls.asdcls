@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_CS03_OSTATUS_VH'
+@MappingRole: true
+define role ZR_CS03_OSTATUS_VH {
+  grant select on ZR_CS03_OSTATUS_VH
+  where TRUE;
+}

@@ -4,7 +4,7 @@
 @AccessControl.authorizationCheck: #MANDATORY
 @Metadata.allowExtensions: true
 @ObjectModel.sapObjectNodeType.name: 'ZCS03_CUSTOMERS000'
-@EndUserText.label: '###GENERATED Core Data Service Entity'
+@EndUserText.label: 'Kundendaten'
 define root view entity ZR_CS03_CUSTOMERS000
   as select from zcs03_customers as Customers
 {

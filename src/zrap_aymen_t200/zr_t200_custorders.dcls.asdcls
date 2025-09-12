@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_T200_CUSTORDERS'
+@MappingRole: true
+define role ZR_T200_CUSTORDERS {
+  grant select on ZR_T200_CUSTORDERS
+  where TRUE;
+}

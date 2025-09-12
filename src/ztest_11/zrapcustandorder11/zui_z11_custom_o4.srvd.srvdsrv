@@ -1,0 +1,12 @@
+@EndUserText: {
+  label: 'Service-Definition für ZC_11_CUSTOM'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_11_CUSTOM'
+  }
+}
+define service ZUI_Z11_CUSTOM_O4 provider contracts odata_v4_ui {
+  expose ZC_11_CUSTOM;
+  expose ZC_11_ORDERS000;
+}

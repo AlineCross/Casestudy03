@@ -1,0 +1,50 @@
+managed implementation in class ZBP_R_CS03_SETTINGS unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CS03_SETTINGS alias ZrCs03Settings
+persistent table ZCS03_SETTINGS
+extensible
+draft table ZCS03_SETTINGS_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   Param;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   Param;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCS03_SETTINGS corresponding extensible
+  {
+    Param = param;
+    Value = value;
+    Description = description;
+    Active = active;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+
+}

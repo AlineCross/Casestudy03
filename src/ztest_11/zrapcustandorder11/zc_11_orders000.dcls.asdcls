@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZC_11_ORDERS000'
+@MappingRole: true
+define role ZC_11_ORDERS000 {
+  grant select on ZC_11_ORDERS000
+  where INHERITING CONDITIONS FROM ENTITY ZC_11_ORDERS DEFAULT TRUE;
+}

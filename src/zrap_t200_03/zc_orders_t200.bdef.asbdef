@@ -1,0 +1,14 @@
+managed implementation in class zbp_c_orders_t200 unique;
+strict ( 2 );
+
+define behavior for zc_orders_t200 //alias <alias_name>
+persistent table zt200_custorders
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) OrderId;
+}

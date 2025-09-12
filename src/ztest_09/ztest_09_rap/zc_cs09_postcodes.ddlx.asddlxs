@@ -24,15 +24,28 @@ annotate view ZC_CS09_POSTCODES with
   Postcode;
   
   @UI.identification: [ {
+    position: 15 
+  } ]
+  @UI.lineItem: [ {
+    position: 15 
+  } ]
+  @UI.selectionField: [ {
+    position: 15 
+  } ]
+  City;
+  
+  @EndUserText.label: 'Anzahl Postcodes'
+  @UI.identification: [ {
     position: 20 
   } ]
   @UI.lineItem: [ {
-    position: 20 
+    position: 20,
+    label:  'Anzahl Postcodes'
   } ]
   @UI.selectionField: [ {
     position: 20 
   } ]
-  City;
+  DistinctPstCds;
   
   @UI.identification: [ {
     position: 30 

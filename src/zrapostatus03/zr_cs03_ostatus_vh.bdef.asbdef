@@ -1,0 +1,48 @@
+managed implementation in class ZBP_R_CS03_OSTATUS_VH unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CS03_OSTATUS_VH alias ZrCs03OstatusVh
+persistent table ZCS03_OSTATUS_VH
+extensible
+draft table ZCS03_OSTTS_VH_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   Status;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   Status;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCS03_OSTATUS_VH corresponding extensible
+  {
+    Status = status;
+    StatusDescription = status_description;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+
+}

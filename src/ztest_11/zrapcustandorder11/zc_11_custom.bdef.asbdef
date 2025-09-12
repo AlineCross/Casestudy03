@@ -1,0 +1,24 @@
+projection implementation in class ZBP_C_11_CUSTOM unique;
+strict ( 2 );
+extensible;
+use side effects;
+define behavior for ZC_11_ORDERS000 alias Zc11Orders000
+extensible
+{
+  use update;
+  use delete;
+
+  use association _CUSTOMERS;
+
+}
+
+define behavior for ZC_11_CUSTOM alias Zc11Custom
+extensible
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _ORDERS { create; }
+
+}

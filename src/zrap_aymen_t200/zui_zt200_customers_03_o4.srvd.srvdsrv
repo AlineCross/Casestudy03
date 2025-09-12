@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_T200_CUSTOMERS'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_T200_CUSTOMERS'
+  }
+}
+define service ZUI_ZT200_CUSTOMERS_03_O4 provider contracts odata_v4_ui {
+  expose ZC_T200_CUSTOMERS;
+}

@@ -4,6 +4,7 @@
   <asx:values>
    <DDLS>
     <DDLNAME>ZC_CS09_POSTCODES</DDLNAME>
+    <DDLANGUAGE>D</DDLANGUAGE>
     <SOURCE_TYPE>P</SOURCE_TYPE>
    </DDLS>
   </asx:values>

@@ -1,0 +1,11 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "SAP-Objektknotentyp ZCS03_OSTATUS_VH",
+    "originalLanguage": "de",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "name": "ZCS03_OSTATUS_VH",
+  "sapObjectType": "ZCS03_OSTATUS_VH",
+  "rootNode": true
+}

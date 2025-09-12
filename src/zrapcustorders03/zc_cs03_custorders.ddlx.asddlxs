@@ -1,12 +1,12 @@
 @Metadata.layer: #CORE
 @UI.headerInfo.title.type: #STANDARD
-@UI.headerInfo.title.value: 'OrderID'
+@UI.headerInfo.title.value: 'OrderDate'
 @UI.headerInfo.description.type: #STANDARD
 @UI.headerInfo.description.value: 'OrderID'
 annotate view ZC_CS03_CUSTORDERS with
 {
   @UI.facet: [ {
-    label: 'General Information', 
+    label: 'Bestelldetails', 
     id: 'GeneralInfo', 
     purpose: #STANDARD, 
     position: 10 , 
@@ -96,6 +96,7 @@ annotate view ZC_CS03_CUSTORDERS with
   @UI.identification: [ {
     position: 80 
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
     position: 80 
   } ]
@@ -107,6 +108,7 @@ annotate view ZC_CS03_CUSTORDERS with
   @UI.identification: [ {
     position: 90 
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
     position: 90 
   } ]
@@ -118,6 +120,7 @@ annotate view ZC_CS03_CUSTORDERS with
   @UI.identification: [ {
     position: 100 
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
     position: 100 
   } ]
@@ -129,6 +132,7 @@ annotate view ZC_CS03_CUSTORDERS with
   @UI.identification: [ {
     position: 110 
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
     position: 110 
   } ]
@@ -140,6 +144,7 @@ annotate view ZC_CS03_CUSTORDERS with
   @UI.identification: [ {
     position: 120 
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
     position: 120 
   } ]
@@ -161,4 +166,6 @@ annotate view ZC_CS03_CUSTORDERS with
     position: 130 
   } ]
   _BaseEntity;
+  
+
 }

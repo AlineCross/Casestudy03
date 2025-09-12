@@ -1,335 +1,362 @@
 @Metadata.layer: #CORE
 @UI.headerInfo.title.type: #STANDARD
-@UI.headerInfo.title.value: 'CustomerID'
+@UI.headerInfo.title.value: 'Company'
 @UI.headerInfo.description.type: #STANDARD
 @UI.headerInfo.description.value: 'CustomerID'
+
+//@UI.lineItem: [ { type: #FOR_ACTION, dataAction: 'ShowStatistic', label: 'Statistik anzeigen', position: 15 } ]
+//@UI.identification: [ { type: #FOR_ACTION, dataAction: 'ShowStatistic', label: 'Statistik anzeigen', position: 15 } ]
+
 annotate view ZC_CS03_CUSTOMERS000 with
 {
   @UI.facet: [ {
-    label: 'Allgemeine Informationen', 
-    id: 'GeneralInfo', 
-    purpose: #STANDARD, 
-    position: 10 , 
+    label: 'Kundendetails',
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10 ,
     type: #IDENTIFICATION_REFERENCE
   } ]
   @UI.identification: [ {
-    position: 10 
+    position: 10
   } ]
-  @UI.lineItem: [ {
-    position: 10 
-  } ]
+  @UI.lineItem: [
+  {
+    position: 10
+  }, 
+  --> label ist mit der CustomerID in semantische Beziehung
+  { type: #FOR_ACTION,
+    dataAction: 'ShowStatistic',
+    label: 'Statistik anzeigen'
+  }
+   --< nicht als separater lineItem, sondern zu ein belibige Feld zuordnen die in der Liste vorkommt
+  ]
   @UI.selectionField: [ {
-    position: 10 
+    position: 10
   } ]
   CustomerID;
-  
+
   @UI.identification: [ {
-    position: 20 
+    position: 20
   } ]
   @UI.lineItem: [ {
-    position: 20 
+    position: 20
   } ]
   @UI.selectionField: [ {
-    position: 20 
+    position: 20
   } ]
   Salutation;
-  
+
   @UI.identification: [ {
-    position: 30 
+    position: 30
   } ]
   @UI.lineItem: [ {
-    position: 30 
+    position: 30
   } ]
   @UI.selectionField: [ {
-    position: 30 
+    position: 30
   } ]
   LastName;
-  
+
   @UI.identification: [ {
-    position: 40 
+    position: 40
   } ]
   @UI.lineItem: [ {
-    position: 40 
+    position: 40
   } ]
   @UI.selectionField: [ {
-    position: 40 
+    position: 40
   } ]
   FirstName;
-  
+
   @UI.identification: [ {
-    position: 50 
+    position: 50
   } ]
   @UI.lineItem: [ {
-    position: 50 
+    position: 50
   } ]
   @UI.selectionField: [ {
-    position: 50 
+    position: 50
   } ]
   Company;
-  
+
   @UI.identification: [ {
-    position: 60 
+    position: 60
   } ]
   @UI.lineItem: [ {
-    position: 60 
+    position: 60
   } ]
   @UI.selectionField: [ {
-    position: 60 
+    position: 60
   } ]
   Street;
-  
+
   @UI.identification: [ {
-    position: 70 
+    position: 70
   } ]
   @UI.lineItem: [ {
-    position: 70 
+    position: 70
   } ]
   @UI.selectionField: [ {
-    position: 70 
+    position: 70
   } ]
   City;
-  
+
   @UI.identification: [ {
-    position: 80 
+    position: 80
   } ]
   @UI.lineItem: [ {
-    position: 80 
+    position: 80
   } ]
   @UI.selectionField: [ {
-    position: 80 
+    position: 80
   } ]
   Country;
-  
+
   @UI.identification: [ {
-    position: 90 
+    position: 90
   } ]
   @UI.lineItem: [ {
-    position: 90 
+    position: 90
   } ]
   @UI.selectionField: [ {
-    position: 90 
+    position: 90
   } ]
   Postcode;
-  
+
   @UI.identification: [ {
-    position: 100 
+    position: 100
   } ]
   @UI.lineItem: [ {
-    position: 100 
+    position: 100
   } ]
   @UI.selectionField: [ {
-    position: 100 
+    position: 100
   } ]
   AccLock;
-  
-  @EndUserText.label: 'SalesVolume'
+
+  @EndUserText.label: 'Umsatz'
   @UI.identification: [ {
-    position: 110 , 
-    label: 'SalesVolume'
+    position: 110
   } ]
   @UI.lineItem: [ {
-    position: 110 , 
-    label: 'SalesVolume'
+    position: 110
   } ]
   @UI.selectionField: [ {
-    position: 110 
+    position: 110
   } ]
   SalesVolume;
-  
-  @EndUserText.label: 'SalesVolumeTarget'
+
+
+  @EndUserText.label: 'Umsatz in Zielwährung'
   @UI.identification: [ {
-    position: 120 , 
-    label: 'SalesVolumeTarget'
+    position: 120
   } ]
   @UI.lineItem: [ {
-    position: 120 , 
-    label: 'SalesVolumeTarget'
+    position: 120
   } ]
   @UI.selectionField: [ {
-    position: 120 
+    position: 120
   } ]
   SalesVolumeTarget;
-  
-  @EndUserText.label: 'ChangeRateDate'
+
+  @EndUserText.label: 'Umrechnungsdatum'
   @UI.identification: [ {
-    position: 130 , 
-    label: 'ChangeRateDate'
+    position: 130
   } ]
   @UI.lineItem: [ {
-    position: 130 , 
-    label: 'ChangeRateDate'
+    position: 130
   } ]
   @UI.selectionField: [ {
-    position: 130 
+    position: 130
   } ]
   ChangeRateDate;
-  
+
+  @EndUserText.label: 'Anzahl der Bestellungen'
   @UI.identification: [ {
-    position: 140 
+    position: 135
   } ]
   @UI.lineItem: [ {
-    position: 140 
+    position: 135
   } ]
   @UI.selectionField: [ {
-    position: 140 
+    position: 135
+  } ]
+  number_of_orders;
+
+  @UI.identification: [ {
+    position: 140
+  } ]
+  @UI.lineItem: [ {
+    position: 140
+  } ]
+  @UI.selectionField: [ {
+    position: 140
   } ]
   Fax;
-  
+
   @UI.identification: [ {
-    position: 150 
+    position: 150
   } ]
   @UI.lineItem: [ {
-    position: 150 
+    position: 150
   } ]
   @UI.selectionField: [ {
-    position: 150 
+    position: 150
   } ]
   Phone;
-  
+
   @UI.identification: [ {
-    position: 160 
+    position: 160
   } ]
   @UI.lineItem: [ {
-    position: 160 
+    position: 160
   } ]
   @UI.selectionField: [ {
-    position: 160 
+    position: 160
   } ]
   Email;
-  
+
   @UI.identification: [ {
-    position: 170 
+    position: 170
   } ]
   @UI.lineItem: [ {
-    position: 170 
+    type: #WITH_URL,
+    url: 'Url',
+    position: 170
   } ]
   @UI.selectionField: [ {
-    position: 170 
+    position: 170
   } ]
   Url;
-  
+
+  @EndUserText.label: 'Sprache'
   @UI.identification: [ {
-    position: 180 
+    position: 180
   } ]
   @UI.lineItem: [ {
-    position: 180 
+    position: 180
   } ]
   @UI.selectionField: [ {
-    position: 180 
+    position: 180
   } ]
   Language;
-  
+
   @UI.identification: [ {
-    position: 190 
+    position: 190
   } ]
   @UI.lineItem: [ {
-    position: 190 
+    position: 190
   } ]
   @UI.selectionField: [ {
-    position: 190 
+    position: 190
   } ]
   WebLogin;
-  
+
   @UI.identification: [ {
-    position: 200 
+    position: 200
   } ]
   @UI.lineItem: [ {
-    position: 200 
+    position: 200
   } ]
   @UI.selectionField: [ {
-    position: 200 
+    position: 200
   } ]
   WebPwd;
-  
+
   @UI.identification: [ {
-    position: 210 
+    position: 210
   } ]
   @UI.lineItem: [ {
-    position: 210 
+    position: 210
   } ]
   @UI.selectionField: [ {
-    position: 210 
+    position: 210
   } ]
   Memo;
-  
+
   @EndUserText.label: 'VIP'
-   @UI.identification: [ {
-    position: 215 
+  @UI.identification: [ {
+   position: 215
   } ]
   @UI.lineItem: [ {
-    position: 215 
+    position: 215
   } ]
   @UI.selectionField: [ {
-    position: 215 
+    position: 215
   } ]
   ZZVIPZVP;
-  
+
   @UI.identification: [ {
-    position: 220 
+    position: 220
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
-    position: 220 
+    position: 220
   } ]
   @UI.selectionField: [ {
-    position: 220 
+    position: 220
   } ]
   LocalCreatedBy;
-  
+
   @UI.identification: [ {
-    position: 230 
+    position: 230
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
-    position: 230 
+    position: 230
   } ]
   @UI.selectionField: [ {
-    position: 230 
+    position: 230
   } ]
   LocalCreatedAt;
-  
+
   @UI.identification: [ {
-    position: 240 
+    position: 240
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
-    position: 240 
+    position: 240
   } ]
   @UI.selectionField: [ {
-    position: 240 
+    position: 240
   } ]
   LocalLastChangedBy;
-  
+
   @UI.identification: [ {
-    position: 250 
+    position: 250
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
-    position: 250 
+    position: 250
   } ]
   @UI.selectionField: [ {
-    position: 250 
+    position: 250
   } ]
   LocalLastChangedAt;
-  
+
   @UI.identification: [ {
-    position: 260 
+    position: 260
   } ]
+  @UI.hidden: true
   @UI.lineItem: [ {
-    position: 260 
+    position: 260
   } ]
   @UI.selectionField: [ {
-    position: 260 
+    position: 260
   } ]
   LastChangedAt;
-  
   @EndUserText.label: '_BaseEntity'
   @UI.identification: [ {
-    position: 270 , 
+    position: 270 ,
     label: '_BaseEntity'
   } ]
   @UI.lineItem: [ {
-    position: 270 , 
+    position: 270 ,
     label: '_BaseEntity'
   } ]
   @UI.selectionField: [ {
-    position: 270 
+    position: 270
   } ]
   _BaseEntity;
+
 }

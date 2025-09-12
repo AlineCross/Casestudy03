@@ -3,83 +3,75 @@ strict ( 2 );
 with draft;
 extensible;
 define behavior for ZR_CS03_CUSTOMERS000 alias ZrCs03Customers000
-persistent table ZCS03_CUSTOMERS
+persistent table zcs03_customers
 extensible
-draft table ZCS03_CSTMR000_D
+draft table zcs03_cstmr000_d
 etag master LocalLastChangedAt
 lock master total etag LastChangedAt
-authorization master( global )
+authorization master ( global )
 late numbering
 {
-//  field ( mandatory : create )
-//p   CustomerID;
 
   field ( readonly )
-   LocalCreatedBy,
-   LocalCreatedAt,
-   LocalLastChangedBy,
-   LocalLastChangedAt,
-   LastChangedAt;
+  CustomerID,
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
 
- // field ( readonly : update )
- //  CustomerID;
-  field ( readonly )
-   CustomerID;
 
   create;
   update;
   delete;
 
-determination getCity on save { field Postcode; }
+  determination getCity on save { field Postcode; }
 
-determination SetSalesVolume on save { field CurrencyTarget; }
+  determination SetSalesVolume on save { create; }
 
-validation check_email on save { create; update; field email; }
+  validation check_email on save { create; update; field email; }
+
+  action ShowStatistic result [0..1] $self;
 
   draft action Activate optimized;
   draft action Discard;
   draft action Edit;
   draft action Resume;
-  draft determine action Prepare{ validation ( always ) check_email;
-                                  determination ( always ) SetSalesVolume;  }
-//  draft determine action Prepare;
+  draft determine action Prepare
+  { validation ( always ) check_email;
+    determination ( always ) SetSalesVolume; }
 
 
-
-//  determination getCustomerID on save { create; }
-//  determination getCustomerID on save { field CustomerID; }
-
-
-  mapping for ZCS03_CUSTOMERS corresponding extensible
-  {
-    CustomerID = customer_id;
-    Salutation = salutation;
-    LastName = last_name;
-    FirstName = first_name;
-    Company = company;
-    Street = street;
-    City = city;
-    Country = country;
-    Postcode = postcode;
-    AccLock = acc_lock;
-    SalesVolume = sales_volume;
-    Currency = currency;
-    SalesVolumeTarget = sales_volume_target;
-    CurrencyTarget = currency_target;
-    ChangeRateDate = change_rate_date;
-    Fax = fax;
-    Phone = phone;
-    Email = email;
-    Url = url;
-    Language = language;
-    WebLogin = web_login;
-    WebPwd = web_pwd;
-    Memo = memo;
-    LocalCreatedBy = local_created_by;
-    LocalCreatedAt = local_created_at;
-    LocalLastChangedBy = local_last_changed_by;
-    LocalLastChangedAt = local_last_changed_at;
-    LastChangedAt = last_changed_at;
-  }
+  mapping for zcs03_customers corresponding extensible
+    {
+      CustomerID         = customer_id;
+      Salutation         = salutation;
+      LastName           = last_name;
+      FirstName          = first_name;
+      Company            = company;
+      Street             = street;
+      City               = city;
+      Country            = country;
+      Postcode           = postcode;
+      AccLock            = acc_lock;
+      SalesVolume        = sales_volume;
+      Currency           = currency;
+      SalesVolumeTarget  = sales_volume_target;
+      CurrencyTarget     = currency_target;
+      ChangeRateDate     = change_rate_date;
+      Fax                = fax;
+      Phone              = phone;
+      Email              = email;
+      Url                = url;
+      Language           = language;
+      WebLogin           = web_login;
+      WebPwd             = web_pwd;
+      Memo               = memo;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
 
 }
