@@ -23,6 +23,7 @@ late numbering
    LocalLastChangedAt,
    LastChangedAt;
 
+
   field ( readonly )
    OrderID;
 
@@ -36,7 +37,7 @@ late numbering
   draft action Edit;
   draft action Resume;
   draft determine action Prepare;
-
+determination update_sales_volume on modify {field OrderTotal;}
   mapping for ZCS03_CUSTORDERS corresponding extensible
   {
     OrderID = order_id;

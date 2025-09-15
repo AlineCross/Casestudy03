@@ -64,7 +64,11 @@ ENDCLASS.
 CLASS zcl_services_for_customers_03 IMPLEMENTATION.
 
 
+
   METHOD create_number_range_object.
+
+*  Erstellen eines Nummernkreisobjektes
+
     TRY.
         cl_numberrange_objects=>create(
            EXPORTING
@@ -88,7 +92,12 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDTRY.
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD delete_number_range_object.
+
+*    Löschen eines Nummernkreisobjektes
+
     TRY.
         cl_numberrange_objects=>delete(
           object = iv_object
@@ -98,6 +107,8 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
       CATCH cx_number_ranges.
     ENDTRY.
   ENDMETHOD.
+
+**********************************************************************
 
   METHOD create_numberrange_intervals.
     TRY.
@@ -119,7 +130,12 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDTRY.
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD delete_numberrange_intervals.
+
+*   Löschen der Intervalle eines Nummernkreisobjektes
+
     TRY.
         cl_numberrange_intervals=>delete(
           EXPORTING
@@ -138,7 +154,12 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDTRY.
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD change_numberrange_intervals.
+
+*  Ändern der Intervalle eines Nummernkreisobjektes
+
     TRY.
         cl_numberrange_intervals=>update(
           EXPORTING
@@ -157,6 +178,8 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDTRY.
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD read_numberrange_intervals.
     TRY.
         cl_numberrange_intervals=>read(
@@ -174,7 +197,11 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDTRY.
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD get_next_number.
+
+*    Abfrage der nächsten Nummer aus dem Nummernkreisobjekt
 
     TRY.
         cl_numberrange_runtime=>number_get(
@@ -198,7 +225,11 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
 
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD check_email.
+
+*    Überprüfung der E-Mail-Adresse mit Regex
 
     IF iv_email IS INITIAL.
       rv_email_bool = abap_true.
@@ -219,7 +250,12 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD check_company.
+
+*  Überprüfung des Firmennamens auf Länge
+
     rv_company_bool = abap_true.
     IF iv_company IS INITIAL.
 *     RAISE EXCEPTION TYPE zcx_services_for_customers_03
@@ -234,6 +270,8 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
+**********************************************************************
 
   METHOD test_statistic.
 
@@ -283,4 +321,5 @@ CLASS zcl_services_for_customers_03 IMPLEMENTATION.
 *                     iv_fiscal_year = '2025' ).
 
   ENDMETHOD.
+
 ENDCLASS.

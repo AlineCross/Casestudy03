@@ -91,6 +91,7 @@ annotate view ZC_CS03_CUSTORDERS with
   @UI.selectionField: [ {
     position: 70 
   } ]
+  @UI.textArrangement: #TEXT_ONLY
   Status;
   
   @UI.identification: [ {

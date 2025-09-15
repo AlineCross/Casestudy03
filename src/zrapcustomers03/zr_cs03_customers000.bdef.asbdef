@@ -19,6 +19,8 @@ late numbering
   LocalLastChangedBy,
   LocalLastChangedAt,
   LastChangedAt;
+//  SalesVolume,
+//  SalesVolumeTarget;
 
 
   create;

@@ -7,6 +7,7 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
+//CDS View mit Parameter für die Anzeige der Umsätze eines Kunden
 define view entity ZCS03custorders_r
 with parameters pa_customer_id : zcustomer_id03
 as select from zcs03_custorders

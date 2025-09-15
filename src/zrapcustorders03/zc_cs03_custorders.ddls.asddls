@@ -22,8 +22,10 @@ define root view entity ZC_CS03_CUSTORDERS
   OrderTotal,
   Discount,
   Info,
-   @Consumption.valueHelpDefinition: [{entity:   { name: 'ZI_OSTATUSVH', 
-                                                      element: 'Status'  }}]
+//   @Consumption.valueHelpDefinition: [{entity:   { name: 'ZI_OSTATUSVH', 
+//                                                      element: 'Status'  }}]
+  _Status.StatusDescription as StatusText,
+  @ObjectModel.text.element: ['StatusText']
   Status,
   @Consumption: {
     valueHelpDefinition: [ {

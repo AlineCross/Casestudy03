@@ -1,152 +1,151 @@
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: true
-@Endusertext: {
-  Label: 'Customers'
+@EndUserText: {
+  label: 'Customers'
 }
-@AccessControl.authorizationCheck: #MANDATORY
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 define root view entity ZC_11_CUSTOM
-  provider contract TRANSACTIONAL_QUERY
+  provider contract transactional_query
   as projection on ZR_11_CUSTOM
-  association [1..1] to ZR_11_CUSTOM as _BaseEntity on $projection.CUSTOMERID = _BaseEntity.CUSTOMERID
+  association [1..1] to ZR_11_CUSTOM as _BaseEntity on $projection.Customer_Id = _BaseEntity.Customer_Id
 {
-  @Endusertext: {
-    Label: 'Kundennummer', 
-    Quickinfo: 'Kundennummer'
+  @EndUserText: {
+    label: 'Kundennummer', 
+    quickInfo: 'Kundennummer'
   }
-  key CustomerId,
-  @Endusertext: {
-    Label: 'Anrede', 
-    Quickinfo: 'Anrede'
+  key Customer_Id,
+  @EndUserText: {
+    label: 'Anrede', 
+    quickInfo: 'Anrede'
   }
   Salutation,
-  @Endusertext: {
-    Label: 'Nachname', 
-    Quickinfo: 'Nachname'
+  @EndUserText: {
+    label: 'Nachname', 
+    quickInfo: 'Nachname'
   }
   LastName,
-  @Endusertext: {
-    Label: 'Vorname', 
-    Quickinfo: 'Vorname'
+  @EndUserText: {
+    label: 'Vorname', 
+    quickInfo: 'Vorname'
   }
   FirstName,
-  @Endusertext: {
-    Label: 'Firma', 
-    Quickinfo: 'Firma'
+  @EndUserText: {
+    label: 'Firma', 
+    quickInfo: 'Firma'
   }
   Company,
-  @Endusertext: {
-    Label: 'Strasse', 
-    Quickinfo: 'Strasse'
+  @EndUserText: {
+    label: 'Strasse', 
+    quickInfo: 'Strasse'
   }
   Street,
-  @Endusertext: {
-    Label: 'Stadt', 
-    Quickinfo: 'Stadt'
+  @EndUserText: {
+    label: 'Stadt', 
+    quickInfo: 'Stadt'
   }
   City,
-  @Endusertext: {
-    Label: 'Land/Region', 
-    Quickinfo: 'Land/Region der Gesellschaft'
+  @EndUserText: {
+    label: 'Land/Region', 
+    quickInfo: 'Land/Region der Gesellschaft'
   }
   Country,
-  @Endusertext: {
-    Label: 'Postleitzahl', 
-    Quickinfo: 'Postleitzahl'
+  @EndUserText: {
+    label: 'Postleitzahl', 
+    quickInfo: 'Postleitzahl'
   }
   Postcode,
-  @Endusertext: {
-    Label: '', 
-    Quickinfo: 'Buchhalterische Sperre'
+  @EndUserText: {
+    label: '', 
+    quickInfo: 'Buchhalterische Sperre'
   }
   AccLock,
-  @Endusertext: {
-    Label: 'letzte Änderung am', 
-    Quickinfo: 'letzte Änderung des Stammsatzes'
+  @EndUserText: {
+    label: 'letzte Änderung am', 
+    quickInfo: 'letzte Änderung des Stammsatzes'
   }
   LastDate,
-  @Endusertext: {
-    Label: 'sales', 
-    Quickinfo: 'sales volume'
+  @EndUserText: {
+    label: 'sales', 
+    quickInfo: 'sales volume'
   }
   SalesVolume,
   @Semantics.currencyCode: true
   Currency,
-  @Endusertext: {
-    Label: 'sales', 
-    Quickinfo: 'sales volume'
+  @EndUserText: {
+    label: 'sales', 
+    quickInfo: 'sales volume'
   }
   SalesVolumeTarget,
-  @Semantics.currencyCode: true
   CurrencyTarget,
   ChangeRateDate,
-  @Endusertext: {
-    Label: 'Fax Nummer', 
-    Quickinfo: 'Fax Nummer'
+  @EndUserText: {
+    label: 'Fax Nummer', 
+    quickInfo: 'Fax Nummer'
   }
   Fax,
-  @Endusertext: {
-    Label: 'Telefonnummer', 
-    Quickinfo: 'Telefonnummer'
+  @EndUserText: {
+    label: 'Telefonnummer', 
+    quickInfo: 'Telefonnummer'
   }
   Phone,
-  @Endusertext: {
-    Label: 'E-Mail', 
-    Quickinfo: 'E-Mail'
+  @EndUserText: {
+    label: 'E-Mail', 
+    quickInfo: 'E-Mail'
   }
   Email,
-  @Endusertext: {
-    Label: 'URL Adresse', 
-    Quickinfo: 'URL Adresse'
+  @EndUserText: {
+    label: 'URL Adresse', 
+    quickInfo: 'URL Adresse'
   }
   Url,
-  @Endusertext: {
-    Label: 'Sprachenschlüssel', 
-    Quickinfo: 'Sprachenschlüssel'
+  @EndUserText: {
+    label: 'Sprachenschlüssel', 
+    quickInfo: 'Sprachenschlüssel'
   }
   Language,
-  @Endusertext: {
-    Label: 'Weblogin für Kunden', 
-    Quickinfo: 'Weblogin für Kundendaten'
+  @EndUserText: {
+    label: 'Weblogin für Kunden', 
+    quickInfo: 'Weblogin für Kundendaten'
   }
   WebLogin,
-  @Endusertext: {
-    Label: 'Webpassword Kunde', 
-    Quickinfo: 'Webpassword für Kundendaten'
+  @EndUserText: {
+    label: 'Webpassword Kunde', 
+    quickInfo: 'Webpassword für Kundendaten'
   }
   WebPwd,
-  @Endusertext: {
-    Label: 'Allgemeine Info', 
-    Quickinfo: 'Allgemeine Informationen'
+  @EndUserText: {
+    label: 'Allgemeine Info', 
+    quickInfo: 'Allgemeine Informationen'
   }
   Memo,
-  @Endusertext: {
-    Label: 'Angelegt von', 
-    Quickinfo: 'Angelegt von Benutzer'
+  @EndUserText: {
+    label: 'Angelegt von', 
+    quickInfo: 'Angelegt von Benutzer'
   }
   LocalCreatedBy,
-  @Endusertext: {
-    Label: 'Angelegt am', 
-    Quickinfo: 'Anlegedatum/-uhrzeit'
+  @EndUserText: {
+    label: 'Angelegt am', 
+    quickInfo: 'Anlegedatum/-uhrzeit'
   }
   LocalCreatedAt,
-  @Endusertext: {
-    Label: 'Geändert von', 
-    Quickinfo: 'Letzte Änderung der lokalen Instanz durch Benutzer'
+  @EndUserText: {
+    label: 'Geändert von', 
+    quickInfo: 'Letzte Änderung der lokalen Instanz durch Benutzer'
   }
   LocalLastChangedBy,
-  @Endusertext: {
-    Label: 'Geändert am', 
-    Quickinfo: 'Datum und Uhrzeit der letzten Änderung der lokalen Instanz'
+  @EndUserText: {
+    label: 'Geändert am', 
+    quickInfo: 'Datum und Uhrzeit der letzten Änderung der lokalen Instanz'
   }
   LocalLastChangedAt,
-  @Endusertext: {
-    Label: 'Geändert am', 
-    Quickinfo: 'Datum und Uhrzeit der letzten Änderung'
+  @EndUserText: {
+    label: 'Geändert am', 
+    quickInfo: 'Datum und Uhrzeit der letzten Änderung'
   }
   LastChangedAt,
-  @Endusertext: {
-    Label: 'VIP Status', 
-    Quickinfo: 'VIP'
+  @EndUserText: {
+    label: 'VIP Status', 
+    quickInfo: 'VIP'
   }
   ZzvipZvp,
   _orders : redirected to composition child ZC_11_ORDERS000,

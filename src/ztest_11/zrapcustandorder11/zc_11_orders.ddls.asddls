@@ -4,10 +4,10 @@
 //@ObjectModel.sapObjectNodeType.name: 'orders child'
 define view entity ZC_11_ORDERS as select from zcs03_custorders
 association to parent ZR_11_CUSTOM as _customers on 
-$projection.CustomerId = _customers.CustomerId
+$projection.Customer_Id = _customers.Customer_Id
 {
-    key customer_id as CustomerId,
     key order_id as OrderId,
+    customer_id as Customer_Id,
     order_date as OrderDate,
     order_total as OrderTotal,
     discount as Discount,

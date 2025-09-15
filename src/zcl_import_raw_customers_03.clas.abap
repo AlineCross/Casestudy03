@@ -11,7 +11,9 @@ CLASS zcl_import_raw_customers_03 DEFINITION
     METHODS import_csv.
 
   PROTECTED SECTION.
+
   PRIVATE SECTION.
+
     METHODS is_db_table_customers_full RETURNING VALUE(rv_result) TYPE abap_boolean.
     CONSTANTS c_raw_csv_table   TYPE ztablename03 VALUE 'zcs03_casestudyd'.
 *    CONSTANTS c_numberrange_counter_reset TYPE zcustomer_id03 VALUE '000001'.
@@ -22,6 +24,7 @@ CLASS zcl_import_raw_customers_03 DEFINITION
     DATA lo_badi       TYPE REF TO zbadi_add_info_cust03.
     DATA lt_error_ids  TYPE zibadi_add_info_cust03=>tt_failed_addresses.
     DATA lv_badi_count TYPE i VALUE '0'.
+
 ENDCLASS.
 
 
@@ -181,7 +184,11 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
 *            <ls_customers_norm>-memo  = <ls_customers_norm>-memo && condense( | Unbekannte Medium: { ls_customers-value1 } { ls_customers-value2 } ,| ).
 *        ENDCASE.
         CASE ls_customers-media.
+
+*        Eintrag der Telefonnummern
+
           WHEN ``.
+
             IF <ls_customers_norm>-phone IS INITIAL.
               <ls_customers_norm>-phone = |{ ls_customers-value1 }/{ ls_customers-value2 } |.
             ELSEIF <ls_customers_norm>-memo IS INITIAL.
@@ -189,6 +196,9 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
             ELSE.
               <ls_customers_norm>-memo  = <ls_customers_norm>-memo && |, Telefon: { ls_customers-value1 }/{ ls_customers-value2 }|.
             ENDIF.
+
+*           Eintrag der Faxgerätnummern
+
           WHEN `Telefax`.
             IF <ls_customers_norm>-fax  IS INITIAL.
               <ls_customers_norm>-fax  = |{ ls_customers-value1 }/{ ls_customers-value2 } |.
@@ -197,9 +207,15 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
             ELSE.
               <ls_customers_norm>-memo  = <ls_customers_norm>-memo && |, Telefax: { ls_customers-value1 }/{ ls_customers-value2 },|.
             ENDIF.
+
+*         Eintrag der Email-Adressen
+
           WHEN `Email`.
             IF zcl_services_for_customers_03=>check_email( iv_email = ls_customers-value1 ) = abap_false.
               TRY.
+
+*          Wenn der Email-Check einen Fehler ergibt, Eintrag in die Protokolltabelle
+
                   zclprot_entry_03=>protocol_failure( EXPORTING
                                                           company      = ls_customers-company
                                                           error_text   = CONV #( ls_customers-value1 )
@@ -208,9 +224,15 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
                                                           rv_error_id     =  error_id
                                                      ).
                 CATCH zcx_services_for_customers_03.
+
               ENDTRY.
+
               APPEND error_id TO lt_error_ids.
+
             ELSE.
+
+*            Da kein Fehler Eintrag der Email-Adresse
+
               IF <ls_customers_norm>-email IS INITIAL.
                 <ls_customers_norm>-email = ls_customers-value1.
               ELSEIF <ls_customers_norm>-memo IS INITIAL.
@@ -218,16 +240,25 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
               ELSE.
                 <ls_customers_norm>-memo  = <ls_customers_norm>-memo && |, Email: {  ls_customers-value1 }|.
               ENDIF.
+
             ENDIF.
+
           WHEN OTHERS.
+
+*          Eintrag unbekannter Medien in das Memo-Feld
+
             IF <ls_customers_norm>-memo IS INITIAL.
-              <ls_customers_norm>-memo  = condense( | Unbekannte Medium: { ls_customers-value1 } { ls_customers-value2 }| ).
+              <ls_customers_norm>-memo  = condense( | Unbekanntes Medium: { ls_customers-value1 } { ls_customers-value2 }| ).
             ELSE.
-              <ls_customers_norm>-memo  = <ls_customers_norm>-memo && condense( |, Unbekannte Medium: { ls_customers-value1 } { ls_customers-value2 }| ).
+              <ls_customers_norm>-memo  = <ls_customers_norm>-memo && condense( |, Unbekanntes Medium: { ls_customers-value1 } { ls_customers-value2 }| ).
             ENDIF.
+
         ENDCASE.
+
         <ls_customers_norm>-language = sy-langu.
         <ls_customers_norm>-country  = 'DE'.
+
+*        Befüllen der Felder für die Änderungs- und Erstellungszeitpunkte
 
         GET TIME STAMP FIELD gv_timestamp.
         <ls_customers_norm>-last_date = cl_abap_context_info=>get_system_date( ).
@@ -241,6 +272,8 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
 
     ENDLOOP.
 
+*   Reduzierung der neuen Datensätze um die, die schon in der Datenbank vorhanden sind
+
     IF is_db_table_customers_full(  ) = abap_true.
 
       LOOP AT gt_customers_norm ASSIGNING <ls_customers_norm>.
@@ -252,7 +285,8 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
         AND   city     = @<ls_customers_norm>-city
         INTO TABLE @FINAL(lt_exist_customers).
 
-*       Die neue Datensatz ist in der Customers vorhanden? Dann aus der neuen Tabelle löschen
+*       Der neue Datensatz ist in Customers vorhanden? Dann aus der neuen Tabelle löschen
+
         IF lines( lt_exist_customers ) > 0. "Es können durchaus mehrere sein
           DELETE gt_customers_norm INDEX sy-tabix.
         ENDIF.
@@ -262,8 +296,10 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
     ENDIF.
 
 *   Den eventuel reduzierten neue Datensätze Customer_ID vergeben
+
     LOOP AT gt_customers_norm ASSIGNING <ls_customers_norm>.
-      "counter für neue Adressen zur Übergabe an das BAdI
+
+*      Counter für neue Adressen zur Übergabe an das BAdI
 
       <ls_customers_norm>-customer_id = CONV typ_numc6( zcl_services_for_customers_03=>get_next_number( iv_object = 'Z03NROBJ_C'  ) ).
       lv_badi_count = lv_badi_count + 1.
@@ -276,6 +312,8 @@ CLASS zcl_import_raw_customers_03 IMPLEMENTATION.
         CATCH cx_root.
       ENDTRY.
     ENDIF.
+
+*   Aufruf des BAdI zur Übergabe der Fehler-IDs und der Anzahl der neu angelegten Adressen
 
     GET BADI lo_badi.
 

@@ -11,6 +11,8 @@ use etag
   use update;
   use delete;
 
+field (readonly) SalesVolume;
+
   use action ShowStatistic;
 
   use action Edit;

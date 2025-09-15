@@ -1,8 +1,8 @@
 @Metadata.layer: #CORE
 @UI.headerInfo.title.type: #STANDARD
-@UI.headerInfo.title.value: 'CustomerId'
+@UI.headerInfo.title.value: 'Customer_Id'
 @UI.headerInfo.description.type: #STANDARD
-@UI.headerInfo.description.value: 'CustomerId'
+@UI.headerInfo.description.value: 'Customer_Id'
 annotate view ZC_11_CUSTOM with
 {
   @UI.facet: [ {
@@ -24,12 +24,12 @@ annotate view ZC_11_CUSTOM with
     position: 10 
   } ]
   @UI.lineItem: [ {
-    position: 10 
+    position: 12 
   } ]
   @UI.selectionField: [ {
     position: 10 
   } ]
-  CustomerId;
+  Customer_Id;
   
   @UI.identification: [ {
     position: 20 

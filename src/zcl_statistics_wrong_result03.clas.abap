@@ -4,10 +4,12 @@ CLASS zcl_statistics_wrong_result03 DEFINITION
   CREATE PUBLIC .
 
   PUBLIC SECTION.
+
     INTERFACES zif_statistics03.
     ALIASES avarage_sales for zif_statistics03~average_sales.
     ALIASES max_sales for zif_statistics03~max_sales.
     ALIASES day_sales for zif_statistics03~day_sales.
+
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.

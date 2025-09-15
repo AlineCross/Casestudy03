@@ -19,9 +19,15 @@ CLASS zclbadi_addinfo_cust03 IMPLEMENTATION.
 
   METHOD zifbdi_addinfo_cust03~get_address_info.
 
+*Hier kann Logik seitens des Kunden implementiert werden.
+
   ENDMETHOD.
 
+**********************************************************************
+
   METHOD if_oo_adt_classrun~main.
-    out->write( 'Custom logic for implementing the BAdI zclbadi_add_info_cust03 can be implemented here.' ) .
+
+    out->write( 'Custom logic for implementing the BAdI zclbadi_add_info_cust03 can be implemented here.' ).
+
   ENDMETHOD.
 ENDCLASS.

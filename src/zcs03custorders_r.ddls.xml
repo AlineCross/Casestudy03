@@ -4,6 +4,7 @@
   <asx:values>
    <DDLS>
     <DDLNAME>ZCS03CUSTORDERS_R</DDLNAME>
+    <DDLANGUAGE>D</DDLANGUAGE>
     <SOURCE_TYPE>W</SOURCE_TYPE>
    </DDLS>
   </asx:values>

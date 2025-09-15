@@ -28,6 +28,7 @@ CLASS zcx_services_for_customers_03 DEFINITION
         attr3 TYPE scx_attrname VALUE 'attr3',
         attr4 TYPE scx_attrname VALUE 'attr4',
       END OF invalid_mail03.
+
        CONSTANTS:
       BEGIN OF statics,
         msgid TYPE symsgid VALUE 'ZMSG_CUSTOMERS_03',
@@ -59,7 +60,9 @@ CLASS zcx_services_for_customers_03 DEFINITION
         error_text    TYPE string OPTIONAL.
 
   PROTECTED SECTION.
+
   PRIVATE SECTION.
+
 ENDCLASS.
 
 
@@ -75,16 +78,27 @@ CLASS zcx_services_for_customers_03 IMPLEMENTATION.
     me->error_text = error_text.
 
     CLEAR me->textid.
+
     IF textid IS INITIAL.
+
       if_t100_message~t100key = if_t100_message=>default_textid.
+
     ELSE.
+
       if_t100_message~t100key = textid.
+
     ENDIF.
+
     IF error_comp IS NOT INITIAL.
+
     me->error_comp = error_comp.
+
     ENDIF.
+
     IF error_text IS NOT INITIAL.
+
       me->error_text = error_text.
+
     ENDIF.
 
   ENDMETHOD.

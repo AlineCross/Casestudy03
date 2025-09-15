@@ -55,6 +55,9 @@ CLASS lhc_zr_cs03_customers000 IMPLEMENTATION.
   METHOD get_global_authorizations.
   ENDMETHOD.
 
+**********************************************************************
+*   Ermittlung der Stadt anhand der Postleitzahl
+
   METHOD getCity.
     DATA lt_customers_upd TYPE TABLE FOR UPDATE zr_cs03_customers000.
 
@@ -89,6 +92,10 @@ CLASS lhc_zr_cs03_customers000 IMPLEMENTATION.
     REPORTED DATA(lt_reported_customers).
 
   ENDMETHOD.
+
+**********************************************************************
+
+*    Überprüfung der E-Mail-Adresse
 
   METHOD check_email.
     READ ENTITIES OF zr_cs03_customers000 IN LOCAL MODE
@@ -136,6 +143,11 @@ CLASS lhc_zr_cs03_customers000 IMPLEMENTATION.
 *
 *  ENDMETHOD.
 
+
+**********************************************************************
+
+*   Berechnung der Umsätze aller Bestellungen in der Zielwährung
+
   METHOD SetSalesVolume.
     DATA volumerate_upd TYPE TABLE FOR UPDATE zr_cs03_customers000.
     READ ENTITIES OF zr_cs03_customers000 IN LOCAL MODE ENTITY
@@ -179,7 +191,9 @@ CLASS lhc_zr_cs03_customers000 IMPLEMENTATION.
 
   ENDMETHOD.
 
+**********************************************************************
 
+*   Statistik anzeigen inkl. Aufruf der Methoden der Statistik-Klasse und Fehlerbehandlung
 
   METHOD showstatistic.
 
@@ -358,7 +372,5 @@ CLASS lhc_zr_cs03_customers000 IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.
-
-
 
 ENDCLASS.

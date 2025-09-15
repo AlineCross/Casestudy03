@@ -5,6 +5,7 @@
 define root view entity ZR_CS03_CUSTORDERS
   as select from zcs03_custorders
   association [0..1] to ZR_CS03_CUSTOMERS as _Customers on $projection.CustomerID = _Customers.CustomerID
+  association [0..1] to ZI_OSTATUSVH as _Status on $projection.Status = _Status.Status
 {
   key order_id                            as OrderID,
       @EndUserText.label: 'Kundennummer'
@@ -15,8 +16,8 @@ define root view entity ZR_CS03_CUSTORDERS
       order_total                         as OrderTotal,
       discount                            as Discount,
       info                                as Info,
-      @Consumption.valueHelpDefinition: [{entity:   { name: 'ZI_OSTATUSVH', 
-                                                      element: 'Status'  }}]
+//      @Consumption.valueHelpDefinition: [{entity:   { name: 'ZI_OSTATUSVH', 
+//                                                      element: 'Status'  }}]
       status                              as Status,
       @Consumption.valueHelpDefinition: [ {
         entity.name: 'I_CurrencyStdVH',
@@ -35,5 +36,6 @@ define root view entity ZR_CS03_CUSTORDERS
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at                     as LastChangedAt,
 
-      _Customers
+      _Customers,
+      _Status
 }

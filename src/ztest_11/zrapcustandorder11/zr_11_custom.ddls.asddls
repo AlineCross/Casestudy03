@@ -1,15 +1,14 @@
 @AbapCatalog.viewEnhancementCategory: [#PROJECTION_LIST]
-@AbapCatalog.extensibility.dataSources: [ 'custom' ]
 @AbapCatalog.extensibility.elementSuffix: 'ZVP'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: true
 //@ObjectModel.sapObjectNodeType.name: 'customers'
 @EndUserText.label: 'Customers'
-define root view entity ZR_11_CUSTOM as select from zcs03_customers as custom
+define root view entity ZR_11_CUSTOM as select from zcs03_customers 
 composition [1..*] of ZC_11_ORDERS as _orders
 {
-    key customer_id as CustomerId,
+    key customer_id as Customer_Id,
     salutation as Salutation,
     last_name as LastName,
     first_name as FirstName,

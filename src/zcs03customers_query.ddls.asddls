@@ -16,9 +16,13 @@ on c.CustomerId = o.customer_id
 {
     key c.CustomerId,
     c.Company,
+    
+//    Berechnung des Gesamtumsatzes pro Kunde
     @Semantics.amount.currencyCode: 'Currency'
     sum( o.order_total )as SalesVolume,
     c.Currency,
+    
+//    Abfrage des höchsten Einzelumsatzes pro Kunde
     @Semantics.amount.currencyCode: 'Currency'
     max ( o.order_total )as SalesMax
 }
